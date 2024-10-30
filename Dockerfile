@@ -1,7 +1,7 @@
 # Use the official Ruby image as the base
 FROM ruby:latest
 
-COPY ./website /website
+COPY . /website
 
 # Set the working directory to /website
 WORKDIR /website
