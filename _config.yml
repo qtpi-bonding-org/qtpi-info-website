@@ -52,12 +52,12 @@ features                                  :
     description                           : Bots and inactive users are financially penalized and discarded from the dating pool. Only active and intentional users are shown.
     fontawesome_icon_name                 : sync
 
-  - title                                 : Easy to Tweak
-    description                           : Tweak accent color, images, icons and transparency via the _config.yml file. No HTML/CSS needed.
+  - title                                 : Incentive to Interact
+    description                           : Every match costs money. Users are incentivized to interact and make meaningful connections.
     fontawesome_icon_name                 : adjust
   
-  - title                                 : Feature List
-    description                           : Add features (like this one) to your site via the _config.yml file. No HTML/CSS needed.
+  - title                                 : Privacy Minded
+    description                           : Only a preview of your profile is suggested to users. Your full profile is only shared with matches. 
     fontawesome_icon_name                 : star
 
   - title                                 : Smart App Banner
