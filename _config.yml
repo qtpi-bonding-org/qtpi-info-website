@@ -11,9 +11,9 @@ presskit_download_link                    : https://qtpi.app                    
                                                                                       # Or upload your press kit file to assets and set path accordingly (e.g. "assets/your_press_kit.zip").
 
 app_icon                                  : # assets/appicon.png                      # Automatically populates if not set and if iOS app ID is set.  Otherwise enter path to icon file manually.
-app_name                                  :                                           # Automatically populates if not set and if iOS app ID is set.  Otherwise enter manually.
+app_name                                  : QTPi                                          # Automatically populates if not set and if iOS app ID is set.  Otherwise enter manually.
 app_price                                 :                                           # Automatically populates if not set and if iOS app ID is set.  Otherwise enter manually.
-app_description                           : Write a short tagline for your app.
+app_description                           : Discover Chemistry with Your Cutie Pie
 
 enable_smart_app_banner                   : true                                      # Set to true to show a smart app banner at top of page on mobile devices.
 
@@ -36,41 +36,45 @@ mastodon_link                             :
 # Feature List                            Edit, add or remove features to be presented.
 features                                  :
 
-  - title                                 : Human-Centric Dating App
-    description                           : QTPi is a human-centric dating app that focuses on intentional dating and meaningful connections.
+  - title                                 : Web of Trust
+    description                           : QTPi fosters a safer, more authentic dating experience by building trust within the community. Through a Web of Trust, users can confidently connect with others, knowing they are part of a network based on mutual trust and verified connections.
     fontawesome_icon_name                 : user
-    
-  - title                                 : No Matchmaking Algorithms
-    description                           : Matchmaking algorithms exacerbate biases. QTPi uses a rules-based system to procedurally generate suggestions based entirely on your input.
-    fontawesome_icon_name                 : laptop-code
 
-  - title                                 : Pay per Match
-    description                           : Stop gambling with super-likes or subscriptions. Only pay if you mutually match!
+  - title                                 : Pay Per Match
+    description                           : Stop gambling for matches with super-likes and subscriptions. With QTPi, you only pay when you mutually match with someone.
     fontawesome_icon_name                 : dollar-sign
 
-  - title                                 : Active and Intentional Users
-    description                           : Bots and inactive users are financially penalized and discarded from the dating pool. Only active and intentional users are shown.
-    fontawesome_icon_name                 : sync
-
   - title                                 : Incentive to Interact
-    description                           : Every match costs money. Users are incentivized to interact and make meaningful connections.
+    description                           : Every match costs money—creating a natural incentive for users to engage meaningfully and build real connections.
     fontawesome_icon_name                 : adjust
-  
-  - title                                 : Privacy Minded
-    description                           : Only a preview of your profile is suggested to users. Your full profile is only shared with matches. 
-    fontawesome_icon_name                 : star
 
-  - title                                 : Smart App Banner
-    description                           : Display a smart app banner on iOS devices.
-    fontawesome_icon_name                 : arrow-alt-circle-down
+  - title                                 : No Matchmaking Algorithms
+    description                           : Many dating apps use algorithms that exacerbate biases and treat people like products. QTPi, however, uses a rules-based system that generates suggestions purely from your input, giving you full control over your experience.
+    fontawesome_icon_name                 : laptop-code
 
-  - title                                 : Social Links
-    description                           : Easily add social media accounts and contact info in the footer via the _config.yml file. No HTML/CSS needed.
+  - title                                 : No Hidden Likes
+    description                           : QTPi wants users to match. If you like someone, they will know.
+    fontawesome_icon_name                 : info-circle
+
+  - title                                 : No Paywall for Filters
+    description                           : Most dating apps lock advanced filters behind a paywall. QTPi helps you find connections, so all filters are free and accessible.
     fontawesome_icon_name                 : link
 
-  - title                                 : FontAwesome Support
-    description                           : Pick custom Font Awesome icons for the feature list via the _config.yml file. No HTML/CSS needed.
-    fontawesome_icon_name                 : info-circle
+  - title                                 : Active, Intentional Users
+    description                           : Bots and inactive profiles are penalized and removed. Only active, intentional users are part of the dating pool.
+    fontawesome_icon_name                 : sync
+
+  - title                                 : Privacy Minded
+    description                           : Your full profile is only shared with mutual matches. QTPi prioritizes your privacy by showing a profile preview to other users.
+    fontawesome_icon_name                 : star
+
+  - title                                 : End-to-End Encryption
+    description                           : Messages are end-to-end encrypted, ensuring that only you and your match can read them.
+    fontawesome_icon_name                 : lock
+
+
+
+
 
   - title                                 : # New Feature Title
     description                           : # New Feature Description
