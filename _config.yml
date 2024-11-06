@@ -38,7 +38,7 @@ features                                  :
 
   - title                                 : Web of Trust
     description                           : QTPi fosters a safer, more authentic dating experience by building trust within the community. Through a Web of Trust, users can confidently connect with others, knowing they are part of a network based on mutual trust and verified connections.
-    fontawesome_icon_name                 : user
+    fontawesome_icon_name                 : network-wired
 
   - title                                 : Pay Per Match
     description                           : Stop gambling for matches with super-likes and subscriptions. With QTPi, you only pay when you mutually match with someone.
@@ -46,7 +46,7 @@ features                                  :
 
   - title                                 : Incentive to Interact
     description                           : Every match costs money—creating a natural incentive for users to engage meaningfully and build real connections.
-    fontawesome_icon_name                 : adjust
+    fontawesome_icon_name                 : comments
 
   - title                                 : No Matchmaking Algorithms
     description                           : Many dating apps use algorithms that exacerbate biases and treat people like products. QTPi, however, uses a rules-based system that generates suggestions purely from your input, giving you full control over your experience.
@@ -54,19 +54,19 @@ features                                  :
 
   - title                                 : No Hidden Likes
     description                           : QTPi wants users to match. If you like someone, they will know.
-    fontawesome_icon_name                 : info-circle
+    fontawesome_icon_name                 : thumbs-up
 
   - title                                 : No Paywall for Filters
-    description                           : Most dating apps lock advanced filters behind a paywall. QTPi helps you find connections, so all filters are free and accessible.
-    fontawesome_icon_name                 : link
+    description                           : Most dating apps lock filters behind a paywall. QTPi helps you find connections, so all filters are free and accessible.
+    fontawesome_icon_name                 : filter
 
   - title                                 : Active, Intentional Users
     description                           : Bots and inactive profiles are penalized and removed. Only active, intentional users are part of the dating pool.
-    fontawesome_icon_name                 : sync
+    fontawesome_icon_name                 : users
 
   - title                                 : Privacy Minded
     description                           : Your full profile is only shared with mutual matches. QTPi prioritizes your privacy by showing a profile preview to other users.
-    fontawesome_icon_name                 : star
+    fontawesome_icon_name                 : user-lock
 
   - title                                 : End-to-End Encryption
     description                           : Messages are end-to-end encrypted, ensuring that only you and your match can read them.
