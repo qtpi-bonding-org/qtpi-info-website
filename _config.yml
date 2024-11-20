@@ -1,5 +1,5 @@
 #page title
-page_title                                :                                           # Automatically populates with app name if not set and if iOS app ID is set. Otherwise enter manually.
+page_title                                :                                          # Automatically populates with app name if not set and if iOS app ID is set. Otherwise enter manually.
 
 # App Info
 ios_app_id                                : 1234793120                                # Required. Enter iOS app ID to automatically populate name, price and icons (e.g. 718043190).
@@ -13,7 +13,7 @@ presskit_download_link                    : https://qtpi.app                    
 app_icon                                  : # assets/appicon.png                      # Automatically populates if not set and if iOS app ID is set.  Otherwise enter path to icon file manually.
 app_name                                  : QTPi                                          # Automatically populates if not set and if iOS app ID is set.  Otherwise enter manually.
 app_price                                 :                                           # Automatically populates if not set and if iOS app ID is set.  Otherwise enter manually.
-app_description                           : Discover Chemistry with Your Cutie Pie
+app_description                           : Discover Chemistry with Your Cutie Pie!
 
 enable_smart_app_banner                   : true                                      # Set to true to show a smart app banner at top of page on mobile devices.
 
@@ -23,7 +23,7 @@ enable_smart_app_banner                   : true                                
 your_name                                 : QTPi Bonding                               
 your_link                                 : https://qtpi.app                     
 your_city                                 : California                                
-email_address                             : qtpi-bonding@protonmail.com
+email_address                             : marketing@qtpi.app
 facebook_username                         :                                           
 instagram_username                        : 
 twitter_username                          : 
@@ -53,7 +53,7 @@ features                                  :
     fontawesome_icon_name                 : laptop-code
 
   - title                                 : No Hidden Likes
-    description                           : QTPi wants users to match. If you like someone, they will know.
+    description                           : QTPi wants users to match. When you like someone, they’ll know, and when someone likes you, we’ll let you know!
     fontawesome_icon_name                 : thumbs-up
 
   - title                                 : No Paywall for Filters
