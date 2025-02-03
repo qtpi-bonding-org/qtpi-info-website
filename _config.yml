@@ -140,6 +140,18 @@ exclude:
   - README.md
   - CNAME
 
+include:
+  - .well-known
+
+# keep_files:
+#   - .well-known
+
+# defaults:
+#   - scope:
+#       path: ".well-known"
+#     values:
+#       layout: null
+
 collections:
   pages:
     output: true
