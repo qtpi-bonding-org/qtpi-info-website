@@ -6,7 +6,9 @@ include_in_header: true
 
 # The Problems with Dating Apps – And How We Fix Them
 
-Dating apps have fundamentally changed the way we meet people, but they come with some significant flaws. These issues are often rooted in business models, features, and mismatched incentives. In this article, we’ll highlight the main problems with traditional dating apps and explain how our app is working to solve them.
+Dating apps have fundamentally changed the way we meet people, but they come with some significant flaws. These issues are often rooted in business models, features, and mismatched incentives. In this article, we’ll highlight the main problems with traditional dating apps and explain how our app is working to solve them. 
+
+Don't just take our word for it! OkCupid [pointed out this problem](http://web.archive.org/web/20100821041938/http://blog.okcupid.com/index.php/why-you-should-never-pay-for-online-dating/#expand) many years ago before they were bought out by Match Group.
 
 ## 1. Misaligned Incentives in Subscription-Based Apps
 
