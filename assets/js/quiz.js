@@ -1,33 +1,54 @@
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('quiz-form');
-    form.addEventListener('submit', function (event) {
-        event.preventDefault();
+    const resultDiv = document.getElementById('result');
 
-        let score = 0;
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
 
-        // Gather answers
-        const answers = {
-            q1: document.querySelector('input[name="q1"]:checked')?.value,
-            q2: document.querySelector('input[name="q2"]:checked')?.value,
-            q3: document.querySelector('input[name="q3"]:checked')?.value,
+        // Initialize scores for each trait
+        const scores = {
+            "Extraversion": 0,
+            "Agreeableness": 0,
+            "Conscientiousness": 0,
+            "Emotional Stability": 0,
+            "Intellect/Imagination": 0
         };
 
-        // Calculate the score based on answers (customize this as per your needs)
-        if (answers.q1 === 'Red') score += 1;
-        if (answers.q2 === 'Dog') score += 1;
-        if (answers.q3 === 'Beach') score += 1;
+        // Loop through each question
+        const questions = form.querySelectorAll('tr');  // Assuming each <tr> is a question
 
-        // Determine result
-        let resultText = '';
-        if (score === 3) {
-            resultText = 'You are a beach lover!';
-        } else if (score === 2) {
-            resultText = 'You are an adventurous person!';
-        } else {
-            resultText = 'You are a nature enthusiast!';
+        questions.forEach((tr, i) => {
+            // Get the radio buttons for this question
+            const radios = tr.querySelectorAll('input[type="radio"]');
+
+            radios.forEach((radio) => {
+                // Get scale and direction from the radio button attributes
+                const scale = radio.getAttribute('data-scale');
+                const direction = radio.getAttribute('data-direction');
+
+                // Check if this radio button is selected
+                if (radio.checked) {
+                    // Get the value of the selected radio button (1-5)
+                    let value = parseInt(radio.value, 10);
+
+                    // Invert score if the direction is negative
+                    if (direction === '-') value = -value;
+
+                    // Add the value to the appropriate scale
+                    if (scale) {
+                        scores[scale] += value;
+                    }
+                }
+            });
+        });
+
+        // Optional: Normalize or visualize scores
+        let output = `<h3>Your Results</h3><ul>`;
+        for (const trait in scores) {
+            output += `<li><strong>${trait}:</strong> ${scores[trait]}</li>`;
         }
+        output += `</ul>`;
 
-        // Display result
-        document.getElementById('result').innerText = resultText;
+        resultDiv.innerHTML = output;
     });
 });
