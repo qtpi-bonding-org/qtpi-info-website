@@ -1,10 +1,10 @@
 ---
 layout: page
-title: The Problems with Dating Apps – And How We Fix Them
+title: Dating App Issues and Our Solutions
 include_in_header: true
 ---
 
-# The Problems with Dating Apps – And How We Fix Them
+# Dating App Issues and Our Solutions
 
 Dating apps have fundamentally changed the way we meet people, but they come with some significant flaws. These issues are often rooted in business models, features, and mismatched incentives. In this article, we’ll highlight the main problems with traditional dating apps and explain how our app is working to solve them. 
 
