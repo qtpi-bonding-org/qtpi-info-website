@@ -14,7 +14,7 @@ include_in_header: true
       <table>
         <thead>
           <tr>
-            <th>Questions</th>
+            <th>Question/Answer</th>
             <th>{{ site.data.personality_quiz.answers[1] }}</th>
             <th>{{ site.data.personality_quiz.answers[2] }}</th>
             <th>{{ site.data.personality_quiz.answers[3] }}</th>

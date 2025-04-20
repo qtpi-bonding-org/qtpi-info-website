@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('quiz-form');
     const resultDiv = document.getElementById('result');
 
-    // Calculate and show results
+    // Main function to calculate score and build UI
     function calculateScores() {
         const scores = {
             "Extraversion": 0,
@@ -32,14 +32,14 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
 
-        // Display scores
+        // Display score results
         let output = `<h3>Your Results</h3><ul>`;
         for (const trait in scores) {
             output += `<li><strong>${trait}:</strong> ${scores[trait]}</li>`;
         }
         output += `</ul>`;
 
-        // Build shareable URL with answers
+        // Generate shareable URL using selected answers
         const params = new URLSearchParams();
         questions.forEach((tr, index) => {
             const selected = tr.querySelector('input[type="radio"]:checked');
@@ -51,19 +51,51 @@ document.addEventListener('DOMContentLoaded', function () {
         const baseUrl = window.location.origin + window.location.pathname;
         const shareUrl = `${baseUrl}?${params.toString()}`;
 
+        // Add share input and copy button
         output += `
             <p><strong>Share your results:</strong></p>
-            <input type="text" value="${shareUrl}" readonly style="width:100%;padding:5px;" onclick="this.select();">
-            <p><a href="${shareUrl}" target="_blank">View Your Results</a></p>
+            <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                <input id="share-url" type="text" value="${shareUrl}" readonly style="flex: 1; padding: 5px;">
+                <button id="copy-link">Copy</button>
+            </div>
+            <p>
+                <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent('Check out my personality results! ' + shareUrl)}" target="_blank" class="fa-stack">
+                    <i class="fa-brands fa-x-twitter fa-stack-1x"></i>
+                </a>
+                <a href="https://bsky.app/intent/compose?text=${encodeURIComponent('Check out my personality results! ' + shareUrl)}" target="_blank" class="fa-stack">
+                    <i class="fa-brands fa-bluesky fa-stack-1x"></i>
+                </a>
+                <a href="https://www.threads.net/share?text=${encodeURIComponent('Check out my personality results! ' + shareUrl)}" target="_blank" class="fa-stack">
+                    <i class="fa-brands fa-threads fa-stack-1x"></i>
+                </a>
+                <a href="https://mastodon.social/share?text=${encodeURIComponent('Check out my personality results! ' + shareUrl)}" target="_blank" class="fa-stack">
+                    <i class="fa-brands fa-mastodon fa-stack-1x"></i>
+                </a>
+                <a href="${shareUrl}" target="_blank">🔗 View Your Results</a>
+            </p>
         `;
 
         resultDiv.innerHTML = output;
+
+        // Enable copy functionality
+        setTimeout(() => {
+            const copyBtn = document.getElementById('copy-link');
+            const shareInput = document.getElementById('share-url');
+
+            if (copyBtn && shareInput) {
+                copyBtn.addEventListener('click', () => {
+                    shareInput.select();
+                    document.execCommand('copy');
+                    copyBtn.innerText = 'Copied!';
+                    setTimeout(() => copyBtn.innerText = 'Copy', 2000);
+                });
+            }
+        }, 0);
     }
 
-    // Auto-fill form from URL
+    // Fill in answers based on URL params like ?q1=4&q2=2...
     function autofillFromURL() {
         const params = new URLSearchParams(window.location.search);
-
         const questions = form.querySelectorAll('tr');
         let filledAny = false;
 
@@ -82,16 +114,16 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         if (filledAny) {
-            calculateScores(); // auto-show results if values were found
+            calculateScores(); // auto-show results if URL had data
         }
     }
 
-    // On submit
+    // On submit, calculate results
     form.addEventListener('submit', function (e) {
         e.preventDefault();
         calculateScores();
     });
 
-    // On page load
+    // On page load, check for answers in URL
     autofillFromURL();
 });
