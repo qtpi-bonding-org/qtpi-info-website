@@ -2,6 +2,41 @@ document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('quiz-form');
     const resultDiv = document.getElementById('result');
 
+    // Sample question data (hardcoded from your YAML file)
+    const questionData = [
+        { text: "Am the life of the party.", scale: "Extraversion", direction: "+" },
+        { text: "Feel little concern for others.", scale: "Agreeableness", direction: "-" },
+        { text: "Am always prepared.", scale: "Conscientiousness", direction: "+" },
+        { text: "Get stressed out easily.", scale: "Emotional Stability", direction: "-" },
+        { text: "Have a rich vocabulary.", scale: "Intellect/Imagination", direction: "+" }
+    ];
+
+    // Function to calculate the max and min scores for each scale
+    function calculateMaxMinScores(questions) {
+        const scaleCounts = {};
+
+        // Count the number of questions for each scale
+        questions.forEach(question => {
+            const scale = question.scale;
+            if (!scaleCounts[scale]) {
+                scaleCounts[scale] = 0;
+            }
+            scaleCounts[scale] += 1; // Increment count for this scale
+        });
+
+        // Calculate max and min scores based on count
+        const maxScores = {};
+        const minScores = {};
+
+        Object.keys(scaleCounts).forEach(scale => {
+            const count = scaleCounts[scale];
+            maxScores[scale] = count * 5; // Max score = count of questions * 5
+            minScores[scale] = count * 1; // Min score = count of questions * 1
+        });
+
+        return { maxScores, minScores };
+    }
+
     // Main function to calculate score and build UI
     function calculateScores() {
         const scores = {
@@ -11,6 +46,8 @@ document.addEventListener('DOMContentLoaded', function () {
             "Emotional Stability": 0,
             "Intellect/Imagination": 0
         };
+
+        const { maxScores, minScores } = calculateMaxMinScores(questionData); // Get the max and min scores
 
         const questions = form.querySelectorAll('tr');
 
@@ -38,6 +75,11 @@ document.addEventListener('DOMContentLoaded', function () {
             output += `<li><strong>${trait}:</strong> ${scores[trait]}</li>`;
         }
         output += `</ul>`;
+
+        // Add bar chart for combined results
+        output += `<h4>Personality Traits Bar Chart</h4>
+            <canvas id="score-bar-chart" width="400" height="200"></canvas>
+        `;
 
         // Generate shareable URL using selected answers
         const params = new URLSearchParams();
@@ -77,20 +119,41 @@ document.addEventListener('DOMContentLoaded', function () {
 
         resultDiv.innerHTML = output;
 
-        // Enable copy functionality
-        setTimeout(() => {
-            const copyBtn = document.getElementById('copy-link');
-            const shareInput = document.getElementById('share-url');
+        // Create Bar chart for personality traits
+        const ctx = document.getElementById("score-bar-chart").getContext("2d");
 
-            if (copyBtn && shareInput) {
-                copyBtn.addEventListener('click', () => {
-                    shareInput.select();
-                    document.execCommand('copy');
-                    copyBtn.innerText = 'Copied!';
-                    setTimeout(() => copyBtn.innerText = 'Copy', 2000);
-                });
+        const traitLabels = Object.keys(scores);
+        const traitScores = Object.values(scores);
+
+        // Calculate the max possible score for the bar chart dynamically
+        const maxPossibleScore = Object.values(maxScores).reduce((sum, score) => sum + score, 0);
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: traitLabels,
+                datasets: [{
+                    label: 'Your Scores',
+                    data: traitScores,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: maxPossibleScore, // Dynamically calculated max score
+                        title: {
+                            display: true,
+                            text: `Max Possible Score: ${maxPossibleScore}`
+                        }
+                    }
+                }
             }
-        }, 0);
+        });
     }
 
     // Fill in answers based on URL params like ?q1=4&q2=2...
