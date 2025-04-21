@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 if (radio.checked) {
                     let value = parseInt(radio.value, 10);
-                    if (direction === '-') value = -value;
+                    if (direction === '-') value = 6 - value;
 
                     if (scale) {
                         scores[scale] += value;
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
         questions.forEach((tr, index) => {
             const selected = tr.querySelector('input[type="radio"]:checked');
             if (selected) {
-                params.set(`q${index + 1}`, selected.value);
+                params.set(`q${index}`, selected.value);
             }
         });
 
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let filledAny = false;
 
         questions.forEach((tr, index) => {
-            const paramKey = `q${index + 1}`;
+            const paramKey = `q${index}`;
             const value = params.get(paramKey);
             if (value) {
                 const radios = tr.querySelectorAll('input[type="radio"]');
