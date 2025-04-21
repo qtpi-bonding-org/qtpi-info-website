@@ -2,36 +2,27 @@ document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('quiz-form');
     const resultDiv = document.getElementById('result');
 
-    // Sample question data (hardcoded from your YAML file)
-    const questionData = [
-        { text: "Am the life of the party.", scale: "Extraversion", direction: "+" },
-        { text: "Feel little concern for others.", scale: "Agreeableness", direction: "-" },
-        { text: "Am always prepared.", scale: "Conscientiousness", direction: "+" },
-        { text: "Get stressed out easily.", scale: "Emotional Stability", direction: "-" },
-        { text: "Have a rich vocabulary.", scale: "Intellect/Imagination", direction: "+" }
-    ];
-
     // Function to calculate the max and min scores for each scale
     function calculateMaxMinScores(questions) {
         const scaleCounts = {};
 
-        // Count the number of questions for each scale
+        // Count the number of questions for each distinct scale
         questions.forEach(question => {
             const scale = question.scale;
             if (!scaleCounts[scale]) {
                 scaleCounts[scale] = 0;
             }
-            scaleCounts[scale] += 1; // Increment count for this scale
+            scaleCounts[scale] += 1;
         });
 
-        // Calculate max and min scores based on count
         const maxScores = {};
         const minScores = {};
 
+        // Calculate max/min scores based on the count of questions for each scale
         Object.keys(scaleCounts).forEach(scale => {
             const count = scaleCounts[scale];
-            maxScores[scale] = count * 5; // Max score = count of questions * 5
-            minScores[scale] = count * 1; // Min score = count of questions * 1
+            maxScores[scale] = count * 5; // Max score = number of questions * 5
+            minScores[scale] = count * 1; // Min score = number of questions * 1
         });
 
         return { maxScores, minScores };
@@ -47,9 +38,21 @@ document.addEventListener('DOMContentLoaded', function () {
             "Intellect/Imagination": 0
         };
 
-        const { maxScores, minScores } = calculateMaxMinScores(questionData); // Get the max and min scores
-
         const questions = form.querySelectorAll('tr');
+        const extractedQuestionData = [];
+
+        questions.forEach((tr) => {
+            const radio = tr.querySelector('input[type="radio"]');
+            if (radio) {
+                extractedQuestionData.push({
+                    scale: radio.getAttribute('data-scale'),
+                    direction: radio.getAttribute('data-direction'),
+                });
+            }
+        });
+
+        // Get the max and min scores for each scale
+        const { maxScores, minScores } = calculateMaxMinScores(extractedQuestionData);
 
         questions.forEach((tr, index) => {
             const radios = tr.querySelectorAll('input[type="radio"]');
@@ -60,10 +63,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 if (radio.checked) {
                     let value = parseInt(radio.value, 10);
-                    if (direction === '-') value = 6 - value;
+                    if (direction === '-') value = 6 - value; // Reverse the value if direction is negative
 
                     if (scale) {
-                        scores[scale] += value;
+                        scores[scale] += value; // Add the value to the corresponding scale
                     }
                 }
             });
@@ -124,9 +127,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const traitLabels = Object.keys(scores);
         const traitScores = Object.values(scores);
-
-        // Calculate the max possible score for the bar chart dynamically
-        const maxPossibleScore = Object.values(maxScores).reduce((sum, score) => sum + score, 0);
+        const maxScoresForChart = Object.values(maxScores);
 
         new Chart(ctx, {
             type: 'bar',
@@ -145,10 +146,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 scales: {
                     y: {
                         beginAtZero: true,
-                        max: maxPossibleScore, // Dynamically calculated max score
+                        max: Math.max(...maxScoresForChart), // Use the max score among all traits
                         title: {
                             display: true,
-                            text: `Max Possible Score: ${maxPossibleScore}`
+                            text: 'Scores'
                         }
                     }
                 }
