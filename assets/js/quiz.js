@@ -99,9 +99,8 @@ document.addEventListener('DOMContentLoaded', function () {
         // Add share input and copy button
         output += `
             <p><strong>Share your results:</strong></p>
-            <div style="display: flex; gap: 10px; margin-bottom: 10px;">
-                <input id="share-url" type="text" value="${shareUrl}" readonly style="flex: 1; padding: 5px;">
-                <button id="copy-link">Copy</button>
+            <div style="margin-bottom: 10px;">
+                <input id="share-url" type="text" value="${shareUrl}" readonly style="width: 100%; padding: 5px;">
             </div>
             <p>
                 <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent('Check out my personality results! ' + shareUrl)}" target="_blank" class="fa-stack">
@@ -116,9 +115,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 <a href="https://mastodon.social/share?text=${encodeURIComponent('Check out my personality results! ' + shareUrl)}" target="_blank" class="fa-stack">
                     <i class="fa-brands fa-mastodon fa-stack-1x"></i>
                 </a>
-                <a href="${shareUrl}" target="_blank">🔗 View Your Results</a>
+                <a href="${shareUrl}" target="_blank"><i class="fa-solid fa-copy"></i> Copy</a>
             </p>
         `;
+
 
         resultDiv.innerHTML = output;
 
