@@ -76,6 +76,24 @@
 			</a>
 		{% endif %}
 
+		{% if site.tiktok_link %}
+			<a rel="me" href="{{ site.tiktok_link }}">
+				<span class="fa-stack fa-1x">
+					<i class="socialIconBack fas fa-circle fa-stack-2x"></i>
+					<i class="socialIconTop fab fa-tiktok fa-stack-1x"></i>
+				</span>
+			</a>
+		{% endif %}
+
+		{% if site.reddit_link %}
+			<a rel="me" href="{{ site.reddit_link }}">
+				<span class="fa-stack fa-1x">
+					<i class="socialIconBack fas fa-circle fa-stack-2x"></i>
+					<i class="socialIconTop fab fa-reddit fa-stack-1x"></i>
+				</span>
+			</a>
+		{% endif %}
+
 		{% if site.github_username %}
 			<a href="https://github.com/{{ site.github_username }}">
 				<span class="fa-stack fa-1x">
