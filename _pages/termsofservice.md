@@ -30,7 +30,7 @@ You agree not to engage in any of the following prohibited activities:
 All content provided by Qtpi is owned by us or our licensors. You retain ownership of the content you create, but you grant us a non-exclusive, worldwide, royalty-free license to use, reproduce, and display that content.
 
 ## 6. Privacy Policy
-Your use of Qtpi is also governed by our [Privacy Policy](https://qtpi.app/termsofservice/), which explains how we collect, use, and protect your information.
+Your use of Qtpi is also governed by our [Privacy Policy](https://qtpi.app/privacypolicy/), which explains how we collect, use, and protect your information.
 
 ## 7. Termination
 We reserve the right to suspend or terminate your account at our discretion, without notice, for any violation of these Terms.
