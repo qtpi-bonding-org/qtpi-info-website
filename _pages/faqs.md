@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "FAQs about Qtpi"
+title: "FAQs"
 permalink: /faq/
 include_in_header: true
 keywords: ["dating app", "meaningful connections", "trust and safety", "online dating", "relationships", "community", "verification", "security"]
