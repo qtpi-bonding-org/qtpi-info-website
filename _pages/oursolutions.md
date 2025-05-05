@@ -2,6 +2,10 @@
 layout: page
 title: Dating App Issues and Our Solutions
 include_in_header: true
+description: "Take our scientifically rigorous Big 5 personality test to gain a deeper understanding of yourself and discover your unique personality profile. Knowing yourself is the first step to successful dating, and our test can help you learn more about your strengths, weaknesses, and what you're looking for in a partner. Plus, if you're interested in joining our dating app, you can easily import your test results to get started - no need to retake the quiz! By understanding yourself better, you'll be more confident and prepared to find meaningful connections with others."
+keywords: ["dating app issues", "online dating problems", "meaningful connections", "science-based matching", "trust", "privacy", "relationships"]
+tags: ["dating app", "online dating", "relationships", "science-based matching", "trust", "privacy", "meaningful connections"]
+category: "dating app"
 ---
 
 # Dating App Issues and Our Solutions

@@ -1,8 +1,12 @@
 ---
 layout: page
-title: FAQs
+title: "FAQs about Qtpi"
 permalink: /faq/
 include_in_header: true
+keywords: ["dating app", "meaningful connections", "trust and safety", "online dating", "relationships", "community", "verification", "security"]
+tags: ["Qtpi", "dating app", "online dating", "meaningful connections", "trust and safety", "community", "verification", "security"]
+description: Get answers to frequently asked questions about Qtpi, a dating app that prioritizes meaningful connections and trust and safety. Learn how our unique approach can help you build lasting relationships.
+category: "FAQ"
 ---
 
 # FAQs about Qtpi
