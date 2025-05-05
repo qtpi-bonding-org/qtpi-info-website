@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Main function to calculate score and build UI
     function calculateScores() {
         const scores = {
-            "Extraversion": 0,
+            "Sociability": 0,
             "Agreeableness": 0,
             "Conscientiousness": 0,
             "Emotional Stability": 0,
