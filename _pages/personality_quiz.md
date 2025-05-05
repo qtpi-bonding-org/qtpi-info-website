@@ -4,7 +4,7 @@ title: Personality Quiz
 include_in_header: true
 ---
 
-<script src="{{ '/assets/js/quiz.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/personality_quiz.js' | relative_url }}"></script>
 
 <div id="quiz-container">
   <h2>Discover Your Personality Pie</h2>
@@ -53,8 +53,8 @@ include_in_header: true
 <div style="margin-top: 3em;">
   <h3>What the Traits Mean</h3>
 
-  <p><strong>Extraversion</strong><br>
-  This describes how outgoing and energetic you are. High extraversion means you're social and thrive around people, while low extraversion means you’re more reserved and enjoy solitude or small groups.</p>
+  <p><strong>Sociability</strong><br>
+  This describes how outgoing and energetic you are. High sociability means you're social and thrive around people, while low sociability means you’re more reserved and enjoy solitude or small groups.</p>
 
   <p><strong>Agreeableness</strong><br>
   This reflects how compassionate and cooperative you are. High agreeableness means you're kind, empathetic, and eager to help others. Lower levels might mean you're more analytical, skeptical, or blunt.</p>
