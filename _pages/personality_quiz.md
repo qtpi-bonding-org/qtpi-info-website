@@ -2,7 +2,7 @@
 layout: page
 title: Personality Quiz
 include_in_header: true
-description: "Discover your unique personality profile with a scientifically rigorous Big 5 personality quiz - completely free and no strings attached, no email or signup required! Knowing yourself is the first step to successful dating, and this quiz can help you learn more about your strengths, weaknesses, and what you're looking for in a partner. Plus, if you're interested in joining Qtpi, you can easily import your quiz results to get started - no need to retake the quiz! By understanding yourself better, you'll be more confident and prepared to find meaningful connections with others."
+description: "Understand yourself with our sign-up less, free Big 5 personality test. Discover your personality and optionally import your results into Qtpi!"
 keywords: ["personality quiz", "personality quiz", "free quiz", "personality type", "self-discovery"]
 tags: ["personality", "dating", "relationships", "self-discovery", "personality quiz", "compatibility", "online dating", "self-awareness", "personal growth"]
 category: "personality"
