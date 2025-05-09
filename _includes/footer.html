@@ -13,38 +13,20 @@
 			</a>
 		{% endif %}
 
-		{% if site.twitter_username %}
-			<a href="https://x.com/@{{ site.twitter_username }}">
-				<span class="fa-stack fa-1x">
-					<i class="socialIconBack fas fa-circle fa-stack-2x"></i>
-					<i class="socialIconTop fab fa-x-twitter fa-stack-1x"></i>
-				</span>
-			</a>
-		{% endif %}
-
-		{% if site.tiktok_username %}
-			<a href="https://x.com/@{{ site.twitter_username }}">
-				<span class="fa-stack fa-1x">
-					<i class="socialIconBack fas fa-circle fa-stack-2x"></i>
-					<i class="socialIconTop fab fa-tiktok fa-stack-1x"></i>
-				</span>
-			</a>
-		{% endif %}
-
-		{% if site.reddit_username %}
-			<a href="https://www.reddit.com/r/{{ site.reddit_subreddit }}">
-				<span class="fa-stack fa-1x">
-					<i class="socialIconBack fas fa-circle fa-stack-2x"></i>
-					<i class="socialIconTop fab fa-reddit fa-stack-1x"></i>
-				</span>
-			</a>
-		{% endif %}
-
 		{% if site.instagram_username %}
 			<a href="https://instagram.com/{{ site.instagram_username }}">
 				<span class="fa-stack fa-1x">
 					<i class="socialIconBack fas fa-circle fa-stack-2x"></i>
 					<i class="socialIconTop fab fa-instagram fa-stack-1x"></i>
+				</span>
+			</a>
+		{% endif %}
+
+		{% if site.threads_username %}
+			<a href="https://www.threads.com/@{{ site.threads_username }}">
+				<span class="fa-stack fa-1x">
+					<i class="socialIconBack fas fa-circle fa-stack-2x"></i>
+					<i class="socialIconTop fab fa-threads fa-stack-1x"></i>
 				</span>
 			</a>
 		{% endif %}
@@ -56,22 +38,13 @@
 					<i class="socialIconTop fab fa-youtube fa-stack-1x"></i>
 				</span>
 			</a>
-		{% endif %}
+		{% endif %}		
 
-		{% if site.mastodon_link %}
-			<a rel="me" href="{{ site.mastodon_link }}">
+		{% if site.twitter_username %}
+			<a href="https://x.com/@{{ site.twitter_username }}">
 				<span class="fa-stack fa-1x">
 					<i class="socialIconBack fas fa-circle fa-stack-2x"></i>
-					<i class="socialIconTop fab fa-mastodon fa-stack-1x"></i>
-				</span>
-			</a>
-		{% endif %}
-
-		{% if site.bluesky_link %}
-			<a rel="me" href="{{ site.bluesky_link }}">
-				<span class="fa-stack fa-1x">
-					<i class="socialIconBack fas fa-circle fa-stack-2x"></i>
-					<i class="socialIconTop fab fa-bluesky fa-stack-1x"></i>
+					<i class="socialIconTop fab fa-x-twitter fa-stack-1x"></i>
 				</span>
 			</a>
 		{% endif %}
@@ -83,13 +56,31 @@
 					<i class="socialIconTop fab fa-tiktok fa-stack-1x"></i>
 				</span>
 			</a>
-		{% endif %}
-
+		{% endif %}	
+		
 		{% if site.reddit_link %}
 			<a rel="me" href="{{ site.reddit_link }}">
 				<span class="fa-stack fa-1x">
 					<i class="socialIconBack fas fa-circle fa-stack-2x"></i>
 					<i class="socialIconTop fab fa-reddit fa-stack-1x"></i>
+				</span>
+			</a>
+		{% endif %}
+
+		{% if site.bluesky_link %}
+			<a rel="me" href="{{ site.bluesky_link }}">
+				<span class="fa-stack fa-1x">
+					<i class="socialIconBack fas fa-circle fa-stack-2x"></i>
+					<i class="socialIconTop fab fa-bluesky fa-stack-1x"></i>
+				</span>
+			</a>
+		{% endif %}		
+
+		{% if site.mastodon_link %}
+			<a rel="me" href="{{ site.mastodon_link }}">
+				<span class="fa-stack fa-1x">
+					<i class="socialIconBack fas fa-circle fa-stack-2x"></i>
+					<i class="socialIconTop fab fa-mastodon fa-stack-1x"></i>
 				</span>
 			</a>
 		{% endif %}
