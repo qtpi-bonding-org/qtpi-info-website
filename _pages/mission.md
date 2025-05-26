@@ -39,7 +39,7 @@ We strive to build meaningful bonds and empower individuals with ethical technol
 * **Bot and Scam Deterrence:** Economic friction and pre-match anonymity reduce the presence of bad actors on our platform.
 
 ## Qtpi Culture
-Our principles are central to everything we do at APP. They guide our approach to user experience, drive our product development, and inform how we foster our community.
+Our principles are central to everything we do at Qtpi. They guide our approach to user experience, drive our product development, and inform how we foster our community.
 
 ### Principles in Action
 

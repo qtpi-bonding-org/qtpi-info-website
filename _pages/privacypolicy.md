@@ -70,7 +70,7 @@ The Site may contain links to third-party websites or services. We are not respo
 
 ## Children's Privacy
 
-Our Site is not intended for use by individuals under the age of 18 (legal adults in most jurisdictions). We do not knowingly collect personal information from minors. If we learn that we have collected personal information from someone under the age of 18, we will take steps to delete that information as soon as possible. If you believe we may have collected information from a minor, please contact us immediately at APP
+Our Site is not intended for use by individuals under the age of 18 (legal adults in most jurisdictions). We do not knowingly collect personal information from minors. If we learn that we have collected personal information from someone under the age of 18, we will take steps to delete that information as soon as possible. If you believe we may have collected information from a minor, please contact us immediately at Qtpi
 
 ## California Privacy Rights
 
