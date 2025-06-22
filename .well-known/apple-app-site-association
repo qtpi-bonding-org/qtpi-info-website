@@ -1,0 +1,18 @@
+{
+    "webcredentials": {
+        "apps": [
+            "SC3N84CY8N.app.qtpi.qtpi"
+        ]
+    },
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "SC3N84CY8N.app.qtpi.qtpi",
+                "paths": [
+                    "*"
+                ]
+            }
+        ]
+    }
+}
