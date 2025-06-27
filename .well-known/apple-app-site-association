@@ -10,7 +10,7 @@
             {
                 "appID": "SC3N84CY8N.app.qtpi.qtpi",
                 "paths": [
-                    "*"
+                    "/applink/*"
                 ]
             }
         ]
