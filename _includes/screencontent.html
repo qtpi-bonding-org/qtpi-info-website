@@ -1,10 +1,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
-{# --- NEW HYBRID LOGIC --- #}
-{# First, check if a brand-specific R2 video URL is defined in _config.yml #}
+{% comment %} --- NEW HYBRID LOGIC --- {% endcomment %}
+{% comment %} First, check if a brand-specific R2 video URL is defined in _config.yml {% endcomment %}
 {% if site.r2_video_url %}
 
-    {# The R2 URL exists. We will use it and ignore the local file search for videos. #}
+    {% comment %} The R2 URL exists. We will use it and ignore the local file search for videos. {% endcomment %}
     <script>
         $(function() {
             // Hide the screenshot area since we are showing the brand video
@@ -19,14 +19,13 @@
             console.log("Using R2 brand video: {{ site.r2_video_url }}");
         });
     </script>
-    {# We can also still search for local screenshots if needed #}
+    
+    {% comment %} We can also still search for local screenshots if needed.
+    This part handles the case where a local screenshot should appear instead of the R2 video. {% endcomment %}
     {% for file in site.static_files %}
         {% if file.path contains 'assets/screenshot/' %}
             <script>
                 $(function() {
-                    // This logic remains in case a screenshot should override the video,
-                    // or if they can be displayed simultaneously depending on your site's design.
-                    // If the video should ALWAYS be shown when present, you might not need this part.
                     $(".iphoneScreen").attr('src', '{{ site.github.baseurl }}{{ file.path }}');
                     $(".iphoneScreen").removeClass("hidden");
                     $(".videoContainer").addClass("hidden"); // Hide video if screenshot is found
@@ -38,8 +37,8 @@
 
 {% else %}
 
-    {# --- FALLBACK TO OLD LOGIC --- #}
-    {# If no r2_video_url is set, run the original code to find local assets. #}
+    {% comment %} --- FALLBACK TO OLD LOGIC --- {% endcomment %}
+    {% comment %} If no r2_video_url is set, run the original code to find local assets. {% endcomment %}
     {% for file in site.static_files %}
         {% if file.path contains 'assets/screenshot/' %}
             <script>
