@@ -1,51 +1,35 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
-{% comment %} --- NEW HYBRID LOGIC --- {% endcomment %}
-{% comment %} First, check if a brand-specific R2 video URL is defined in _config.yml {% endcomment %}
-{% if site.r2_video_url %}
+{% comment %} --- CORRECTED AND FINAL HYBRID LOGIC --- {% endcomment %}
 
-    {% comment %} The R2 URL exists. We will use it and ignore the local file search for videos. {% endcomment %}
+{% if site.r2_video_url and site.r2_video_url != "" %}
+    
+    {% comment %} An R2 URL is defined. ONLY run this block and ignore all local file logic. {% endcomment %}
     <script>
         $(function() {
-            // Hide the screenshot area since we are showing the brand video
+            // Ensure the screenshot is hidden
             $(".iphoneScreen").addClass("hidden");
-            
-            // Show the video container
+
+            // Ensure the video container is visible
             $(".videoContainer").removeClass("hidden");
             
-            // Append the video source using the URL from the config file
+            // Add the R2 video source and log success to the console
             $(".screenvideo").append('<source src="{{ site.r2_video_url }}" type="video/mp4">');
-
-            console.log("Using R2 brand video: {{ site.r2_video_url }}");
+            console.log("SUCCESS: Displaying R2 brand video: {{ site.r2_video_url }}");
         });
     </script>
-    
-    {% comment %} We can also still search for local screenshots if needed.
-    This part handles the case where a local screenshot should appear instead of the R2 video. {% endcomment %}
-    {% for file in site.static_files %}
-        {% if file.path contains 'assets/screenshot/' %}
-            <script>
-                $(function() {
-                    $(".iphoneScreen").attr('src', '{{ site.github.baseurl }}{{ file.path }}');
-                    $(".iphoneScreen").removeClass("hidden");
-                    $(".videoContainer").addClass("hidden"); // Hide video if screenshot is found
-                    console.log("Displaying local screenshot: {{ file.path }}");
-                });
-            </script>
-        {% endif %}
-    {% endfor %}
 
 {% else %}
 
     {% comment %} --- FALLBACK TO OLD LOGIC --- {% endcomment %}
-    {% comment %} If no r2_video_url is set, run the original code to find local assets. {% endcomment %}
+    {% comment %} No R2 URL was found. Run the original logic to find local screenshots or videos. {% endcomment %}
     {% for file in site.static_files %}
         {% if file.path contains 'assets/screenshot/' %}
             <script>
                 $(function() {
                     $(".iphoneScreen").attr('src', '{{ site.github.baseurl }}{{ file.path }}');
                     $(".iphoneScreen").removeClass("hidden");
-                    console.log("{{ file.path }}");
+                    console.log("FALLBACK: Displaying local screenshot: {{ file.path }}");
                 });
             </script>
         {% elsif file.path contains 'assets/videos/' %}
@@ -53,7 +37,7 @@
                 <script>
                     $(function() {
                         $(".iphoneScreen").addClass("hidden");
-                        console.log("remove screenshot");
+                        console.log("FALLBACK: Hiding screenshot to show local video.");
                     });
                 </script>
             {% endunless %}
@@ -62,25 +46,9 @@
                     $(function() {
                         $(".videoContainer").removeClass("hidden");
                         $(".screenvideo").append('<source src="{{ site.github.baseurl }}{{ file.path }}" type="video/mp4">');
-                        console.log("{{ file.path }}");
+                        console.log("FALLBACK: Using local video: {{ file.path }}");
                     });
                 </script>
-            {% elsif file.extname == ".ogg" %}
-                <script>
-                    $(function() {
-                        $(".videoContainer").removeClass("hidden");
-                        $(".screenvideo").append('<source src="{{ site.github.baseurl }}{{ file.path }}" type="video/ogg">');
-                        console.log("{{ file.path }}");
-                    });
-                </script>
-            {% elsif file.extname == ".webm" %}
-            <script>
-                $(function() {
-                    $(".videoContainer").removeClass("hidden");
-                    $(".screenvideo").append('<source src="{{ site.github.baseurl }}{{ file.path }}" type="video/webm">');
-                    console.log("{{ file.path }}");
-                });
-            </script>
             {% endif %}
         {% endif %}
     {% endfor %}
