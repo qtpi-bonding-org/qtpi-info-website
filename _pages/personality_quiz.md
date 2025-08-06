@@ -11,6 +11,13 @@ category: "personality"
 # Discover Your Personality
 Discover your unique personality profile with a scientifically rigorous Big 5 personality quiz - **completely free** and no strings attached, **no email or signup** required! Knowing yourself is the first step to successful dating, and this quiz can help you learn more about your strengths, weaknesses, and what you're looking for in a partner. Plus, if you're interested in joining [**Qtpi**](https://qtpi.app), you can easily import your quiz results to get started - no need to retake the quiz! By understanding yourself better, you'll be more confident and prepared to find meaningful connections with others.
 
+<script>
+  window.personalityData = {
+    piePersonalities: {{ site.data.personality_data.pie_personalities | jsonify }},
+    traitExplanations: {{ site.data.personality_data.trait_explanations | jsonify }},
+    scaleColors: {{ site.data.personality_data.scale_colors | jsonify }}
+  };
+</script>
 <script src="{{ '/assets/js/personality_quiz.js' | relative_url }}"></script>
 
 <div id="quiz-container">
@@ -60,20 +67,20 @@ Discover your unique personality profile with a scientifically rigorous Big 5 pe
 <div style="margin-top: 3em;">
   <h3>What the Traits Mean</h3>
 
-  <p><strong>Sociability</strong><br>
-  This describes how outgoing and energetic you are. High sociability means you're social and thrive around people, while low sociability means you’re more reserved and enjoy solitude or small groups.</p>
+  <p><strong>Open vs Traditional</strong><br>
+  This measures your creativity, curiosity, and willingness to explore new ideas. High scores mean you're imaginative and open to new experiences, while low scores suggest you prefer routine and familiarity.</p>
 
-  <p><strong>Agreeableness</strong><br>
-  This reflects how compassionate and cooperative you are. High agreeableness means you're kind, empathetic, and eager to help others. Lower levels might mean you're more analytical, skeptical, or blunt.</p>
+  <p><strong>Disciplined vs Spontaneous</strong><br>
+  This is about how organized and responsible you are. High scores mean you’re disciplined, reliable, and like planning. Low scores suggest a more spontaneous, flexible, and easygoing approach.</p>
 
-  <p><strong>Conscientiousness</strong><br>
-  This is about how organized and responsible you are. High conscientiousness means you’re disciplined, reliable, and like planning. Low levels suggest a more spontaneous, flexible, and easygoing approach.</p>
+  <p><strong>Social vs Reserved</strong><br>
+  This describes how outgoing and energetic you are. High scores mean you're social and thrive around people, while low scores mean you’re more reserved and enjoy solitude or small groups.</p>
 
-  <p><strong>Emotional Stability</strong><br>
-  This refers to how well you handle stress. High emotional stability means you're calm and resilient. Lower levels suggest you may experience mood swings, anxiety, or get overwhelmed more easily.</p>
+  <p><strong>Easygoing vs Assertive</strong><br>
+  This reflects how compassionate and cooperative you are. High scores mean you're kind, empathetic, and eager to help others. Low scores might mean you're more analytical, skeptical, or blunt.</p>
 
-  <p><strong>Intellect / Imagination (Openness)</strong><br>
-  This measures creativity, curiosity, and willingness to explore new ideas. High levels indicate you're imaginative and open to new experiences, while lower levels suggest you prefer routine and familiarity.</p>
+  <p><strong>Calm vs Passionate</strong><br>
+  This refers to how well you handle stress. High scores mean you're composed and resilient. Low scores suggest you may experience mood swings, anxiety, or get overwhelmed more easily.</p>
 </div>
 
 <!-- Results will be shown here at the very bottom -->

@@ -1,0 +1,181 @@
+# _data/personality_data.yml
+
+pie_personalities:
+  T-D-R-E-C:
+    pieType: "Sweet Potato Pie"
+    code: "T-D-R-E-C"
+    reasoning: "Grounded, practical, no-nonsense — comforting and consistent."
+    blurb: "You are reliable and steady, valuing calm and consistency in your life. Your disciplined and reserved nature means you approach situations thoughtfully. Others appreciate your comforting presence and steady support."
+  T-D-R-E-P:
+    pieType: "Cherry Pie"
+    code: "T-D-R-E-P"
+    reasoning: "A quiet emotional depth — sweet, with a core of intensity."
+    blurb: "You tend to keep emotions close but feel things deeply. While reserved, your passionate side shines with close connections. You balance intensity with calm, creating a rich inner emotional world."
+  T-D-R-A-C:
+    pieType: "Custard Pie"
+    code: "T-D-R-A-C"
+    reasoning: "Mild, structured, and modest — smooth and unassuming."
+    blurb: "Calm and collected, you prefer order and clarity in your environment. You lead quietly with confidence and avoid unnecessary drama. Your steady presence is a source of reassurance for others."
+  T-D-R-A-P:
+    pieType: "Pumpkin Pie"
+    code: "T-D-R-A-P"
+    reasoning: "Warm, family-oriented, nostalgic — classic comfort traditionalist."
+    blurb: "You cherish tradition and create cozy emotional bonds with those close to you. Your passion reveals itself in your dedication to loved ones. People see you as dependable and emotionally authentic."
+  T-D-O-E-C:
+    pieType: "Pecan Pie"
+    code: "T-D-O-E-C"
+    reasoning: "Composed but strong — formal, classic leader with rich presence."
+    blurb: "You exhibit disciplined strength and sociability, balancing professionalism with warmth. Your outgoing yet steady nature commands respect effortlessly. You are a natural leader who others trust to guide with calm confidence."
+  T-D-O-E-P:
+    pieType: "Tiramisu Pie"
+    code: "T-D-O-E-P"
+    reasoning: "Energized yet polished — layered, driven, with intensity."
+    blurb: "Your disciplined approach fuels passionate engagement with the world. You combine outgoing energy with refined taste and depth. This balance creates a captivating and dynamic presence."
+  T-D-O-A-C:
+    pieType: "Blueberry Pie"
+    code: "T-D-O-A-C"
+    reasoning: "Steady, reliable, sociable — always shows up with calm energy."
+    blurb: "You bring balance and sociability in a calm, approachable way. Your assertiveness is tempered with ease, making you a steady friend and partner. Your grounded presence reassures those around you."
+  T-D-O-A-P:
+    pieType: "Strawberry Pie"
+    code: "T-D-O-A-P"
+    reasoning: "Cheerful, affectionate, classically charming."
+    blurb: "Outgoing and passionate, you express warmth easily and enjoy lively connections. Your assertive nature helps you pursue what matters with enthusiasm. Others find your energy and charm infectious."
+  T-S-R-E-C:
+    pieType: "Lemon Meringue Pie"
+    code: "T-S-R-E-C"
+    reasoning: "Sharp, witty, reserved — cool and clever with a tart bite."
+    blurb: "You combine reserved behavior with sharp intellect and wit. Your openness is thoughtful, but you maintain emotional control. People respect your cleverness and subtle charm."
+  T-S-R-E-P:
+    pieType: "Cranberry Pie"
+    code: "T-S-R-E-P"
+    reasoning: "Bold and punchy, grounded in tradition — the edgy traditionalist."
+    blurb: "Reserved but intense, you uphold values strongly and express passion selectively. Your presence is memorable and often surprising beneath a quiet exterior. You blend tradition with an edge of rebelliousness."
+  T-S-R-A-C:
+    pieType: "Banana Pudding Pie"
+    code: "T-S-R-A-C"
+    reasoning: "Chill, humble, and lovable — universally comforting."
+    blurb: "Your reserved but assertive style creates a calm and lovable persona. You maintain steady emotional balance and avoid unnecessary conflict. You are a comforting and grounding influence on others."
+  T-S-R-A-P:
+    pieType: "Eggnog Pie"
+    code: "T-S-R-A-P"
+    reasoning: "Seasonal and nostalgic — a warm and intense comfort."
+    blurb: "You balance a love for tradition with a passionate inner world. Though reserved, you hold deep feelings about what matters most, offering quiet but heartfelt comfort."
+  T-S-O-E-C:
+    pieType: "Peach Pie"
+    code: "T-S-O-E-C"
+    reasoning: "Warm, generous, outgoing — a social staple."
+    blurb: "You are friendly, open, and easygoing, drawing people in with warmth. Your sociability is genuine and inviting. You build strong connections through generosity and kindness."
+  T-S-O-E-P:
+    pieType: "Key Lime Pie"
+    code: "T-S-O-E-P"
+    reasoning: "Bright, spirited, and crowd-pleasing — confident with zest."
+    blurb: "Outgoing and passionate, you energize social situations with enthusiasm. Your openness creates dynamic and engaging interactions. You are a lively presence who embraces new experiences."
+  T-S-O-A-C:
+    pieType: "Apple Pie"
+    code: "T-S-O-A-C"
+    reasoning: "Joyful, traditional — universally liked, balanced, and dependable."
+    blurb: "You balance tradition with outgoing warmth and assertiveness. Your grounded nature makes you approachable and trustworthy. You are the classic all-rounder people enjoy being around."
+  T-S-O-A-P:
+    pieType: "Orange Cream Pie"
+    code: "T-S-O-A-P"
+    reasoning: "Light, imaginative, warm — full of whimsy and cheer."
+    blurb: "You combine passion with assertiveness and imaginative spirit. Your energy is warm and uplifting, inspiring others. You approach life with creativity and enthusiasm."
+  O-D-R-E-C:
+    pieType: "Chocolate Pie"
+    code: "O-D-R-E-C"
+    reasoning: "Deep, contemplative, principled — rich inner life."
+    blurb: "You are thoughtful and principled, often reflecting deeply on ideas and values. Your openness is tempered by a discipline and calm demeanor. People trust your insight and steady wisdom."
+  O-D-R-E-P:
+    pieType: "Blackberry Pie"
+    code: "O-D-R-E-P"
+    reasoning: "Intense, visionary — sharp, layered, a bit wild."
+    blurb: "Reserved but passionately intense, you see possibilities others miss. Your visionary nature combines with discipline to fuel unique insights. You have a complex and layered personality that intrigues others."
+  O-D-R-A-C:
+    pieType: "Ricotta Pie"
+    code: "O-D-R-A-C"
+    reasoning: "Subtle, refined, and quietly confident — elegant with a hint of tradition."
+    blurb: "You have an understated elegance and a calm, idealistic nature. You approach life with quiet confidence and principled discipline, inspiring others through your subtle strength."
+  O-D-R-A-P:
+    pieType: "Cantaloupe Pie"
+    code: "O-D-R-A-P"
+    reasoning: "Soft-spoken, thoughtful, rare — gentle uniqueness."
+    blurb: "Reserved and passionate, you bring gentle intensity to your interactions. Your uniqueness is subtle but deeply felt by close ones. You value meaningful connections over casual encounters."
+  O-D-O-E-C:
+    pieType: "Boston Cream Pie"
+    code: "O-D-O-E-C"
+    reasoning: "Refined but playful — sharp mind with a sweet center."
+    blurb: "You are intelligent and outgoing with a lighthearted spirit. Your disciplined nature balances your playful side well. You make social situations enjoyable while keeping depth and focus."
+  O-D-O-E-P:
+    pieType: "Pineapple Pie"
+    code: "O-D-O-E-P"
+    reasoning: "Bold and dynamic — tropical confidence with flair."
+    blurb: "Outgoing and passionate, you bring bold energy to everything you do. Your discipline supports your confident and adventurous spirit. You are a magnetic and inspiring personality."
+  O-D-O-A-C:
+    pieType: "Mango Pie"
+    code: "O-D-O-A-C"
+    reasoning: "Smart, analytical, approachable — warm intellect."
+    blurb: "Assertive but calm, you combine analytical thinking with friendliness. You are approachable and thoughtful, making complex ideas accessible. Your balanced personality builds trust and rapport easily."
+  O-D-O-A-P:
+    pieType: "Raspberry Pie"
+    code: "O-D-O-A-P"
+    reasoning: "Colorful, independent, fun — proudly unique."
+    blurb: "You are outgoing and passionate with a strong sense of individuality. Your assertiveness drives you to pursue your unique path. People admire your fun-loving spirit and authenticity."
+  O-S-R-E-C:
+    pieType: "Coconut Pie"
+    code: "O-S-R-E-C"
+    reasoning: "Calm, creative, offbeat — beachy and curious."
+    blurb: "You are a reserved, creative soul with calm energy. Your openness feeds your curiosity about the world around you. Your unique style and thoughtful nature draw others in quietly."
+  O-S-R-E-P:
+    pieType: "Boysenberry Pie"
+    code: "O-S-R-E-P"
+    reasoning: "Emotional, intense, unconventional — soulful and rare."
+    blurb: "Reserved and passionately intense, you see possibilities others miss. Your visionary nature combines with discipline to fuel unique insights. You have a complex and layered personality that intrigues others."
+  O-S-R-A-C:
+    pieType: "Huckleberry Pie"
+    code: "O-S-R-A-C"
+    reasoning: "Soft, grounded rebel — rustic and deeply natural."
+    blurb: "Assertive but calm, you combine grounded values with a rebellious streak. You are authentic and prefer natural, honest connections. Your quiet strength inspires those who know you well."
+  O-S-R-A-P:
+    pieType: "Ube Pie"
+    code: "O-S-R-A-P"
+    reasoning: "Artistic, dreamy, mystical — ethereal introvert."
+    blurb: "You are a passionate, reserved dreamer with a strong artistic side. Your assertiveness is subtle but present in your unique worldview. Others find your mystical presence intriguing and inspiring."
+  O-S-O-E-C:
+    pieType: "Pistachio Pie"
+    code: "O-S-O-E-C"
+    reasoning: "Curious, expressive — stands out with subtle confidence."
+    blurb: "Outgoing yet calm, you express yourself with thoughtful curiosity. You enjoy exploring ideas while maintaining emotional composure. Your subtle confidence makes you memorable and engaging."
+  O-S-O-E-P:
+    pieType: "Rhubarb Pie"
+    code: "O-S-O-E-P"
+    reasoning: "Tart, bold, and unapologetically itself — a vibrant, rustic original."
+    blurb: "You are bursting with creative energy and a zest for life. Your bold and vibrant personality is infectious, and you aren't afraid to stand out from the crowd."
+  O-S-O-A-C:
+    pieType: "Possum Pie"
+    code: "O-S-O-A-C"
+    reasoning: "Playful and complex — more than meets the eye, with surprising layers of depth."
+    blurb: "You are sociable and calm, but possess a surprising depth and complexity. People are often intrigued by your layered personality and your ability to be both fun-loving and thoughtful."
+  O-S-O-A-P:
+    pieType: "Peanut Butter Pie"
+    code: "O-S-O-A-P"
+    reasoning: "Rich, satisfying, and deeply comforting — a bold and soulful favorite."
+    blurb: "You connect with others on a deep, soulful level. You are outgoing and assertive in your passions, and people are drawn to your rich, heartfelt emotional energy."
+  
+trait_explanations:
+  O: "<strong>Open (O):</strong> You are imaginative, curious, and open to new experiences."
+  T: "<strong>Traditional (T):</strong> You value consistency, practicality, and time-honored traditions."
+  D: "<strong>Disciplined (D):</strong> You are organized, responsible, and prefer a structured approach."
+  S: "<strong>Spontaneous (S):</strong> You are flexible, adaptable, and enjoy living in the moment."
+  R: "<strong>Reserved (R):</strong> You are thoughtful and deliberate, finding energy in quieter settings."
+  E: "<strong>Easygoing (E):</strong> You are cooperative, considerate, and value getting along with others."
+  A: "<strong>Assertive (A):</strong> You are direct, confident, and comfortable taking the lead."
+  C: "<strong>Calm (C):</strong> You are composed and level-headed, maintaining a steady emotional balance."
+  P: "<strong>Passionate (P):</strong> You feel emotions deeply and bring a vibrant intensity to your life."
+
+scale_colors:
+  Open vs Traditional: "#007BFF"
+  Disciplined vs Spontaneous: "#28A745"
+  Social vs Reserved: "#FFC107"
+  Easygoing vs Assertive: "#17A2B8"
+  Calm vs Passionate: "#DC3545"

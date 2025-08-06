@@ -1,90 +1,158 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // ASSUMPTION: The Chart.js library (for the bar chart) and the necessary HTML elements
+    // (like 'quiz-form', 'result', and the table structure with data attributes)
+    // are assumed to exist in the environment.
+
     const form = document.getElementById('quiz-form');
     const resultDiv = document.getElementById('result');
 
-    // Function to calculate the max and min scores for each scale
-    function calculateMaxMinScores(questions) {
-        const scaleCounts = {};
+    // ASSUMPTION: The following data objects are assumed to exist in the global scope,
+    // injected from the Jekyll-processed YAML files.
+    const pieData = window.personalityData.piePersonalities;
+    const traitExplanations = window.personalityData.traitExplanations;
+    const scaleColors = window.personalityData.scaleColors;
 
-        // Count the number of questions for each distinct scale
-        questions.forEach(question => {
-            const scale = question.scale;
-            if (!scaleCounts[scale]) {
-                scaleCounts[scale] = 0;
-            }
-            scaleCounts[scale] += 1;
-        });
+    // A mapping of the full trait pairs to their one-letter codes.
+    const traitCodeMap = {
+        "Open vs Traditional": { positive: "O", negative: "T" },
+        "Disciplined vs Spontaneous": { positive: "D", negative: "S" },
+        "Social vs Reserved": { positive: "O", negative: "R" },
+        "Easygoing vs Assertive": { positive: "E", negative: "A" },
+        "Calm vs Passionate": { positive: "C", negative: "P" }
+    };
 
-        const maxScores = {};
-        const minScores = {};
+    // A mapping of the full trait pairs to their descriptive names for the results output.
+    const traitNameMap = {
+        "Open vs Traditional": { positive: "Open", negative: "Traditional" },
+        "Disciplined vs Spontaneous": { positive: "Disciplined", negative: "Spontaneous" },
+        "Social vs Reserved": { positive: "Social", negative: "Reserved" },
+        "Easygoing vs Assertive": { positive: "Easygoing", negative: "Assertive" },
+        "Calm vs Passionate": { positive: "Calm", negative: "Passionate" }
+    };
 
-        // Calculate max/min scores based on the count of questions for each scale
-        Object.keys(scaleCounts).forEach(scale => {
-            const count = scaleCounts[scale];
-            maxScores[scale] = count * 5; // Max score = number of questions * 5
-            minScores[scale] = count * 1; // Min score = number of questions * 1
-        });
 
-        return { maxScores, minScores };
-    }
-
-    // Main function to calculate score and build UI
-    function calculateScores() {
-        const scores = {
-            "Sociability": 0,
-            "Agreeableness": 0,
-            "Conscientiousness": 0,
-            "Emotional Stability": 0,
-            "Intellect/Imagination": 0
-        };
-
+    // Function to apply colors to each question row based on its scale
+    function colorQuestions() {
         const questions = form.querySelectorAll('tr');
-        const extractedQuestionData = [];
-
         questions.forEach((tr) => {
             const radio = tr.querySelector('input[type="radio"]');
             if (radio) {
-                extractedQuestionData.push({
-                    scale: radio.getAttribute('data-scale'),
-                    direction: radio.getAttribute('data-direction'),
-                });
+                const scale = radio.getAttribute('data-scale');
+                const color = scaleColors[scale];
+                if (color) {
+                    tr.querySelector('td:first-child').style.backgroundColor = color;
+                    tr.querySelector('td:first-child').style.color = 'white';
+                    tr.querySelector('td:first-child').style.padding = '8px';
+                }
+            }
+        });
+    }
+
+    function calculateScores() {
+        const scores = {
+            "Social vs Reserved": 0,
+            "Easygoing vs Assertive": 0,
+            "Disciplined vs Spontaneous": 0,
+            "Calm vs Passionate": 0,
+            "Open vs Traditional": 0
+        };
+
+        const answeredCounts = {
+            "Social vs Reserved": 0,
+            "Easygoing vs Assertive": 0,
+            "Disciplined vs Spontaneous": 0,
+            "Calm vs Passionate": 0,
+            "Open vs Traditional": 0
+        };
+
+        const questions = form.querySelectorAll('tr');
+
+        const answeredQuestionsData = [];
+
+        questions.forEach((tr) => {
+            const selectedRadio = tr.querySelector('input[type="radio"]:checked');
+            if (selectedRadio) {
+                const scale = selectedRadio.getAttribute('data-scale');
+                const direction = selectedRadio.getAttribute('data-direction');
+                let value = parseInt(selectedRadio.value, 10);
+                if (direction === '-') value = 6 - value;
+                if (scale) {
+                    scores[scale] += value;
+                    answeredCounts[scale]++;
+                    answeredQuestionsData.push({ scale, direction });
+                }
             }
         });
 
-        // Get the max and min scores for each scale
-        const { maxScores, minScores } = calculateMaxMinScores(extractedQuestionData);
+        const requiredScales = Object.keys(scores);
+        const missingScales = requiredScales.filter(scale => answeredCounts[scale] === 0);
 
-        questions.forEach((tr, index) => {
-            const radios = tr.querySelectorAll('input[type="radio"]');
+        if (missingScales.length > 0) {
+            resultDiv.innerHTML = `<p style="color: red;">
+                Please answer at least one question for each personality trait to get your result.
+                You are missing questions for the following traits: <strong>${missingScales.join(', ')}</strong>.
+            </p>`;
+            return;
+        }
 
-            radios.forEach((radio) => {
-                const scale = radio.getAttribute('data-scale');
-                const direction = radio.getAttribute('data-direction');
+        const { maxScores, minScores } = calculateMaxMinScores(answeredQuestionsData);
 
-                if (radio.checked) {
-                    let value = parseInt(radio.value, 10);
-                    if (direction === '-') value = 6 - value; // Reverse the value if direction is negative
+        const thresholds = {};
+        for (const scale in maxScores) {
+            thresholds[scale] = (maxScores[scale] + minScores[scale]) / 2;
+        }
 
-                    if (scale) {
-                        scores[scale] += value; // Add the value to the corresponding scale
-                    }
-                }
-            });
+        let finalCode = "";
+        let displayCode = "";
+        let finalTraitsOutput = "";
+
+        const traitPairs = [
+            "Open vs Traditional",
+            "Disciplined vs Spontaneous",
+            "Social vs Reserved",
+            "Easygoing vs Assertive",
+            "Calm vs Passionate"
+        ];
+
+        traitPairs.forEach((scaleName, index) => {
+            const score = scores[scaleName];
+            const threshold = thresholds[scaleName];
+            const codes = traitCodeMap[scaleName];
+            const names = traitNameMap[scaleName];
+
+            if (score > threshold) {
+                finalCode += codes.positive;
+                displayCode += codes.positive;
+                finalTraitsOutput += `<li>You are a **${names.positive}** person.</li>`;
+            } else if (score < threshold) {
+                finalCode += codes.negative;
+                displayCode += codes.negative;
+                finalTraitsOutput += `<li>You are a **${names.negative}** person.</li>`;
+            } else { // It's a tie
+                finalCode += codes.negative; // Use a valid letter for the lookup
+                displayCode += `?${codes.negative}?`;
+                finalTraitsOutput += `<li>You are a mix of **${names.positive}** and **${names.negative}**.</li>`;
+            }
+            if (index < traitPairs.length - 1) {
+                finalCode += "-";
+                displayCode += "-";
+            }
         });
 
-        // Display score results
-        let output = `<h3>Your Results</h3><ul>`;
-        for (const trait in scores) {
-            output += `<li><strong>${trait}:</strong> ${scores[trait]}</li>`;
+        const pieResult = pieData[finalCode];
+
+        if (!pieResult) {
+            resultDiv.innerHTML = `<p>Error: Could not calculate your pie type. An invalid code was generated: ${finalCode}. Please ensure your personality data is configured correctly.</p>`;
+            return;
         }
-        output += `</ul>`;
 
-        // Add bar chart for combined results
-        output += `<h4>Personality Traits Bar Chart</h4>
-            <canvas id="score-bar-chart" width="400" height="200"></canvas>
-        `;
+        // --- Build the Result UI ---
+        let pieName = pieResult.pieType.toLowerCase();
+        let filename = pieName.replace(/ /g, "_") + '.svg';
+        const imageUrl = `https://assets.qtpi.app/cutie_pie/${encodeURIComponent(filename)}`;
 
-        // Generate shareable URL using selected answers
+        let traitList = `<ul>${finalTraitsOutput}</ul>`;
+
         const params = new URLSearchParams();
         questions.forEach((tr, index) => {
             const selected = tr.querySelector('input[type="radio"]:checked');
@@ -92,39 +160,45 @@ document.addEventListener('DOMContentLoaded', function () {
                 params.set(`q${index}`, selected.value);
             }
         });
-
         const baseUrl = window.location.origin + window.location.pathname;
         const shareUrl = `${baseUrl}?${params.toString()}`;
 
-        // Add share input and copy button
-        output += `
-            <p><strong>Share your results:</strong></p>
-            <div style="margin-bottom: 10px;">
-                <input id="share-url" type="text" value="${shareUrl}" readonly style="width: 100%; padding: 5px;">
+        let output = `
+            <div class="result-container">
+                <h2>You are a ${pieResult.pieType}!</h2>
+                <img src="${imageUrl}" alt="${pieResult.pieType}" style="max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem;">
+                <p><em>"${pieResult.reasoning}"</em></p>
+                <p>${pieResult.blurb}</p>
+                <hr>
+                <h3>Your Personality Code: ${displayCode}</h3>
+                ${traitList}
+                <h4>Your Trait Scores</h4>
+                <canvas id="score-bar-chart" width="400" height="200"></canvas>
+                <p><strong>Share your results:</strong></p>
+                <div style="margin-bottom: 10px;">
+                    <input id="share-url" type="text" value="${shareUrl}" readonly style="width: 100%; padding: 5px;">
+                </div>
+                <p>
+                    <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent('I got ' + pieResult.pieType + ' on the pie personality quiz! See your result: ' + shareUrl)}" target="_blank" class="fa-stack">
+                        <i class="fa-brands fa-x-twitter fa-stack-1x"></i>
+                    </a>
+                    <a href="https://bsky.app/intent/compose?text=${encodeURIComponent('I got ' + pieResult.pieType + ' on the pie personality quiz! See your result: ' + shareUrl)}" target="_blank" class="fa-stack">
+                        <i class="fa-brands fa-bluesky fa-stack-1x"></i>
+                    </a>
+                    <a href="https://www.threads.net/share?text=${encodeURIComponent('I got ' + pieResult.pieType + ' on the pie personality quiz! See your result: ' + shareUrl)}" target="_blank" class="fa-stack">
+                        <i class="fa-brands fa-threads fa-stack-1x"></i>
+                    </a>
+                    <a href="https://mastodon.social/share?text=${encodeURIComponent('I got ' + pieResult.pieType + ' on the pie personality quiz! See your result: ' + shareUrl)}" target="_blank" class="fa-stack">
+                        <i class="fa-brands fa-mastodon fa-stack-1x"></i>
+                    </a>
+                    <a href="javascript:void(0);" onclick="navigator.clipboard.writeText('${shareUrl}'); alert('Link copied!');" title="Copy link"><i class="fa-solid fa-copy"></i> Copy</a>
+                </p>
             </div>
-            <p>
-                <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent('Check out my personality results! ' + shareUrl)}" target="_blank" class="fa-stack">
-                    <i class="fa-brands fa-x-twitter fa-stack-1x"></i>
-                </a>
-                <a href="https://bsky.app/intent/compose?text=${encodeURIComponent('Check out my personality results! ' + shareUrl)}" target="_blank" class="fa-stack">
-                    <i class="fa-brands fa-bluesky fa-stack-1x"></i>
-                </a>
-                <a href="https://www.threads.net/share?text=${encodeURIComponent('Check out my personality results! ' + shareUrl)}" target="_blank" class="fa-stack">
-                    <i class="fa-brands fa-threads fa-stack-1x"></i>
-                </a>
-                <a href="https://mastodon.social/share?text=${encodeURIComponent('Check out my personality results! ' + shareUrl)}" target="_blank" class="fa-stack">
-                    <i class="fa-brands fa-mastodon fa-stack-1x"></i>
-                </a>
-                <a href="${shareUrl}" target="_blank"><i class="fa-solid fa-copy"></i> Copy</a>
-            </p>
         `;
-
-
         resultDiv.innerHTML = output;
 
-        // Create Bar chart for personality traits
+        // Create Bar chart
         const ctx = document.getElementById("score-bar-chart").getContext("2d");
-
         const traitLabels = Object.keys(scores);
         const traitScores = Object.values(scores);
         const maxScoresForChart = Object.values(maxScores);
@@ -146,48 +220,66 @@ document.addEventListener('DOMContentLoaded', function () {
                 scales: {
                     y: {
                         beginAtZero: true,
-                        max: Math.max(...maxScoresForChart), // Use the max score among all traits
-                        title: {
-                            display: true,
-                            text: 'Scores'
-                        }
+                        max: Math.max(...maxScoresForChart),
+                        title: { display: true, text: 'Scores' }
                     }
                 }
             }
         });
     }
 
-    // Fill in answers based on URL params like ?q1=4&q2=2...
-    function autofillFromURL() {
-        const params = new URLSearchParams(window.location.search);
-        const questions = form.querySelectorAll('tr');
-        let filledAny = false;
-
-        questions.forEach((tr, index) => {
-            const paramKey = `q${index}`;
-            const value = params.get(paramKey);
-            if (value) {
-                const radios = tr.querySelectorAll('input[type="radio"]');
-                radios.forEach((radio) => {
-                    if (radio.value === value) {
-                        radio.checked = true;
-                        filledAny = true;
-                    }
-                });
+    // Function to calculate max/min scores based on the questions that were answered.
+    function calculateMaxMinScores(answeredQuestions) {
+        const scaleCounts = {};
+        answeredQuestions.forEach(question => {
+            const scale = question.scale;
+            if (!scaleCounts[scale]) {
+                scaleCounts[scale] = 0;
             }
+            scaleCounts[scale] += 1;
         });
 
-        if (filledAny) {
-            calculateScores(); // auto-show results if URL had data
+        const maxScores = {};
+        const minScores = {};
+        Object.keys(scaleCounts).forEach(scale => {
+            const count = scaleCounts[scale];
+            maxScores[scale] = count * 5;
+            minScores[scale] = count * 1;
+        });
+
+        return { maxScores, minScores };
+    }
+
+    function autofillFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        if (params.toString()) {
+            const questions = form.querySelectorAll('tr');
+            let filledAny = false;
+            questions.forEach((tr, index) => {
+                const paramKey = `q${index}`;
+                const value = params.get(paramKey);
+                if (value) {
+                    const radios = tr.querySelectorAll('input[type="radio"]');
+                    radios.forEach((radio) => {
+                        if (radio.value === value) {
+                            radio.checked = true;
+                            filledAny = true;
+                        }
+                    });
+                }
+            });
+            if (filledAny) {
+                calculateScores();
+            }
         }
     }
 
-    // On submit, calculate results
+    // --- Event Listeners and Initial Functions ---
     form.addEventListener('submit', function (e) {
         e.preventDefault();
         calculateScores();
     });
 
-    // On page load, check for answers in URL
+    colorQuestions();
     autofillFromURL();
 });
