@@ -1,0 +1,22 @@
+---
+layout: page
+---
+<div id="result-page-container" data-code="{{ page.code }}">
+  <div id="result-placeholder">
+      <h2>Calculating your result...</h2>
+  </div>
+</div>
+
+<script>
+  window.resultPageData = {
+    code: "{{ page.code }}",
+    piePersonalities: {{ site.data.personality_data.pie_personalities | jsonify }},
+    traitExplanations: {{ site.data.personality_data.trait_explanations | jsonify }},
+    scaleColors: {{ site.data.personality_data.scale_colors | jsonify }},
+    quizQuestions: {{ site.data.personality_quiz.questions | jsonify }}
+  };
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="{{ '/assets/js/pie_result.js' | relative_url }}"></script>

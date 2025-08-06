@@ -169,10 +169,16 @@ collections:
   pages:
     output: true
     permalink: /:path/
+  results:
+    output: true
+    permalink: /results/:name/
 
 title: My Blog
 baseurl: ""  # Leave this empty if you are not using a subdirectory
 permalink: /blog/:title/
+
+exclude:
+  - venv/
 
 # Markdown rendering
 markdown: kramdown
