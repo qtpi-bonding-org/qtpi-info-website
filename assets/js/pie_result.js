@@ -17,19 +17,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function calculateScoresFromURL() {
         const params = new URLSearchParams(window.location.search);
-
-        // ** THE FIX IS HERE **
-        // Instead of checking for 'q0', we check if there are any parameters at all.
         if (params.toString() === "") {
             return null;
         }
-
         const scores = { "Social vs Reserved": 0, "Easygoing vs Assertive": 0, "Disciplined vs Spontaneous": 0, "Calm vs Passionate": 0, "Open vs Traditional": 0 };
         const answeredQuestionsData = [];
-
         quizQuestions.forEach((question, index) => {
             const answerValue = params.get(`q${index}`);
-            // This part correctly handles missing questions, only processing the ones that exist.
             if (answerValue) {
                 let value = parseInt(answerValue, 10);
                 if (question.direction === '-') value = 6 - value;
@@ -90,6 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
             finalTraitsOutput += `<li>You are a **${traitName}** person.</li>`;
         });
 
+        // ** THE FIX IS IN THIS BLOCK **
         placeholder.innerHTML = `
             <div class="result-container">
                 <h2>You are a ${pieResult.pieType}!</h2>
@@ -106,11 +101,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     <input id="share-url" type="text" value="${shareUrl}" readonly style="width: 100%; padding: 5px;">
                 </div>
                 <p>
-                    <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent('I got ' + pieResult.pieType + ' on the pie personality quiz! See your result: ' + shareUrl)}" target="_blank"><i class="fa-brands fa-x-twitter fa-stack-1x"></i></a>
-                    <a href="https://bsky.app/intent/compose?text=${encodeURIComponent('I got ' + pieResult.pieType + ' on the pie personality quiz! See your result: ' + shareUrl)}" target="_blank"><i class="fa-brands fa-bluesky fa-stack-1x"></i></a>
-                    <a href="https://www.threads.net/share?text=${encodeURIComponent('I got ' + pieResult.pieType + ' on the pie personality quiz! See your result: ' + shareUrl)}" target="_blank"><i class="fa-brands fa-threads fa-stack-1x"></i></a>
-                    <a href="https://mastodon.social/share?text=${encodeURIComponent('I got ' + pieResult.pieType + ' on the pie personality quiz! See your result: ' + shareUrl)}" target="_blank"><i class="fa-brands fa-mastodon fa-stack-1x"></i></a>
-                    <a href="javascript:void(0);" onclick="navigator.clipboard.writeText('${shareUrl}'); alert('Link copied!');" title="Copy link"><i class="fa-solid fa-copy"></i> Copy</a>
+                    <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent('I got ' + pieResult.pieType + ' on the pie personality quiz! See your result: ' + shareUrl)}" target="_blank" class="fa-stack" title="Share on X"><i class="fa-brands fa-x-twitter fa-stack-1x"></i></a>
+                    <a href="https://bsky.app/intent/compose?text=${encodeURIComponent('I got ' + pieResult.pieType + ' on the pie personality quiz! See your result: ' + shareUrl)}" target="_blank" class="fa-stack" title="Share on Bluesky"><i class="fa-brands fa-bluesky fa-stack-1x"></i></a>
+                    <a href="https://www.threads.net/share?text=${encodeURIComponent('I got ' + pieResult.pieType + ' on the pie personality quiz! See your result: ' + shareUrl)}" target="_blank" class="fa-stack" title="Share on Threads"><i class="fa-brands fa-threads fa-stack-1x"></i></a>
+                    <a href="https://mastodon.social/share?text=${encodeURIComponent('I got ' + pieResult.pieType + ' on the pie personality quiz! See your result: ' + shareUrl)}" target="_blank" class="fa-stack" title="Share on Mastodon"><i class="fa-brands fa-mastodon fa-stack-1x"></i></a>
+                    <a href="javascript:void(0);" onclick="navigator.clipboard.writeText(\`${shareUrl}\`); alert('Link copied!');" title="Copy link"><i class="fa-solid fa-copy"></i> Copy</a>
                 </p>
             </div>`;
 
