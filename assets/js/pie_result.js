@@ -7,6 +7,27 @@ document.addEventListener('DOMContentLoaded', function () {
     const { code, piePersonalities, traitExplanations, scaleColors, quizQuestions } = window.resultPageData;
     const pieResult = piePersonalities[code];
 
+    // **NEW**: A helper function to handle the copy-to-clipboard action and feedback
+    window.handleCopyClick = function (copyUrl) {
+        navigator.clipboard.writeText(copyUrl);
+
+        const copyLink = document.getElementById('copy-link');
+        const copyFeedback = document.getElementById('copy-feedback');
+
+        if (copyLink && copyFeedback) {
+            // Hide the copy link and show the "Copied!" message
+            copyLink.style.display = 'none';
+            copyFeedback.style.display = 'inline';
+
+            // After 2 seconds, hide the message and show the copy link again
+            setTimeout(() => {
+                copyFeedback.style.display = 'none';
+                copyLink.style.display = 'inline';
+            }, 2000);
+        }
+    }
+
+
     const traitNameMap = {
         "Open vs Traditional": { positive: "Open", negative: "Traditional" },
         "Disciplined vs Spontaneous": { positive: "Disciplined", negative: "Spontaneous" },
@@ -84,7 +105,6 @@ document.addEventListener('DOMContentLoaded', function () {
             finalTraitsOutput += `<li>You are a **${traitName}** person.</li>`;
         });
 
-        // ** THE FIX IS IN THIS BLOCK **
         placeholder.innerHTML = `
             <div class="result-container">
                 <h2>You are a ${pieResult.pieType}!</h2>
@@ -105,7 +125,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     <a href="https://bsky.app/intent/compose?text=${encodeURIComponent('I got ' + pieResult.pieType + ' on the pie personality quiz! See your result: ' + shareUrl)}" target="_blank" class="fa-stack" title="Share on Bluesky"><i class="fa-brands fa-bluesky fa-stack-1x"></i></a>
                     <a href="https://www.threads.net/share?text=${encodeURIComponent('I got ' + pieResult.pieType + ' on the pie personality quiz! See your result: ' + shareUrl)}" target="_blank" class="fa-stack" title="Share on Threads"><i class="fa-brands fa-threads fa-stack-1x"></i></a>
                     <a href="https://mastodon.social/share?text=${encodeURIComponent('I got ' + pieResult.pieType + ' on the pie personality quiz! See your result: ' + shareUrl)}" target="_blank" class="fa-stack" title="Share on Mastodon"><i class="fa-brands fa-mastodon fa-stack-1x"></i></a>
-                    <a href="javascript:void(0);" onclick="navigator.clipboard.writeText(\`${shareUrl}\`); alert('Link copied!');" title="Copy link"><i class="fa-solid fa-copy"></i> Copy</a>
+                    
+                    <a href="javascript:void(0);" id="copy-link" onclick="handleCopyClick(\`${shareUrl}\`); return false;" title="Copy link"><i class="fa-solid fa-copy"></i> Copy</a>
+                    <span id="copy-feedback" style="display: none; color: #28a745; margin-left: 10px; font-weight: bold;">Copied!</span>
                 </p>
             </div>`;
 
